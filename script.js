@@ -2,10 +2,85 @@
 const hamburger = document.getElementById('hamburger');
 const navMenu = document.getElementById('nav-menu');
 
-hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    navMenu.classList.toggle('active');
-});
+if (hamburger && navMenu) {
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+}
+
+// Theme toggle functionality
+const themeToggle = document.getElementById('theme-toggle');
+const themeIcon = document.getElementById('theme-icon');
+const body = document.body;
+const navbar = document.querySelector('.navbar');
+
+// Function to update navbar background
+function updateNavbarBackground() {
+    if (!navbar) return;
+
+    const currentTheme = document.body.getAttribute('data-theme');
+    const isScrolled = window.scrollY > 100;
+
+    if (isScrolled) {
+        if (currentTheme === 'dark') {
+            navbar.style.background = 'rgba(15, 23, 42, 0.98)';
+        } else {
+            navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+        }
+        navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+    } else {
+        if (currentTheme === 'dark') {
+            navbar.style.background = 'rgba(15, 23, 42, 0.95)';
+        } else {
+            navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+        }
+        navbar.style.boxShadow = 'none';
+    }
+}
+
+// Function to update theme icon
+function updateThemeIcon(theme) {
+    if (!themeIcon) return;
+
+    if (theme === 'dark') {
+        themeIcon.className = 'fas fa-sun';
+        themeIcon.style.color = '#f59e0b';
+    } else {
+        themeIcon.className = 'fas fa-moon';
+        themeIcon.style.color = '';
+    }
+}
+
+// Check for saved theme preference or default to dark theme
+const currentTheme = localStorage.getItem('theme') || 'dark';
+body.setAttribute('data-theme', currentTheme);
+
+// Initialize icon and navbar
+updateThemeIcon(currentTheme);
+updateNavbarBackground();
+
+// Theme toggle event listener
+if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = body.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+        body.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateThemeIcon(newTheme);
+        updateNavbarBackground(); // Update navbar colors
+
+        // Add animation class
+        themeToggle.style.transform = 'rotate(360deg)';
+        setTimeout(() => {
+            themeToggle.style.transform = '';
+        }, 300);
+    });
+}
+
+// Navbar background on scroll
+window.addEventListener('scroll', updateNavbarBackground);
 
 // Close menu when clicking on a link
 document.querySelectorAll('.nav-link').forEach(link => {
@@ -52,16 +127,7 @@ window.addEventListener('scroll', () => {
 });
 
 // Navbar background on scroll
-const navbar = document.querySelector('.navbar');
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 100) {
-        navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-        navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
-    } else {
-        navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-        navbar.style.boxShadow = 'none';
-    }
-});
+window.addEventListener('scroll', updateNavbarBackground);
 
 // Intersection Observer for fade-in animations
 const observerOptions = {
@@ -106,7 +172,7 @@ window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;
     const hero = document.querySelector('.hero');
     const heroHeight = hero.offsetHeight;
-    
+
     // Only apply parallax when hero is visible
     if (scrolled < heroHeight && hero) {
         const parallaxSpeed = scrolled * 0.3;
@@ -126,20 +192,20 @@ if (footerText) {
 
 // Add click ripple effect to buttons
 document.querySelectorAll('.btn').forEach(button => {
-    button.addEventListener('click', function(e) {
+    button.addEventListener('click', function (e) {
         const ripple = document.createElement('span');
         const rect = this.getBoundingClientRect();
         const size = Math.max(rect.width, rect.height);
         const x = e.clientX - rect.left - size / 2;
         const y = e.clientY - rect.top - size / 2;
-        
+
         ripple.style.width = ripple.style.height = size + 'px';
         ripple.style.left = x + 'px';
         ripple.style.top = y + 'px';
         ripple.classList.add('ripple');
-        
+
         this.appendChild(ripple);
-        
+
         setTimeout(() => {
             ripple.remove();
         }, 600);
@@ -184,7 +250,7 @@ skillTags.forEach(tag => {
         tag.style.backgroundColor = randomColor;
         tag.style.color = 'white';
     });
-    
+
     tag.addEventListener('mouseleave', () => {
         tag.style.backgroundColor = '';
         tag.style.color = '';
@@ -197,16 +263,16 @@ document.querySelectorAll('.project-card').forEach(card => {
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
-        
+
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
-        
+
         const rotateX = (y - centerY) / 10;
         const rotateY = (centerX - x) / 10;
-        
+
         card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
     });
-    
+
     card.addEventListener('mouseleave', () => {
         card.style.transform = '';
     });
@@ -256,9 +322,10 @@ console.log(`
    
    Voici quelques infos sur ce site :
    • Fait avec HTML5, CSS3 et JavaScript vanilla
-   • Design responsive et moderne
+   • Design responsive et moderne avec mode sombre
    • Optimisé pour les performances
    • Déployable sur GitHub Pages
+   • Mode sombre par défaut 🌙
    
    GitHub: https://github.com/FelixLusseau
    LinkedIn: https://www.linkedin.com/in/felix-lusseau
@@ -273,28 +340,36 @@ document.addEventListener('keydown', (e) => {
         e.preventDefault();
         document.getElementById('home').scrollIntoView({ behavior: 'smooth' });
     }
-    
+
     // Alt + A = About
     if (e.altKey && e.key === 'a') {
         e.preventDefault();
         document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
     }
-    
+
     // Alt + S = Skills
     if (e.altKey && e.key === 's') {
         e.preventDefault();
         document.getElementById('skills').scrollIntoView({ behavior: 'smooth' });
     }
-    
+
     // Alt + P = Projects
     if (e.altKey && e.key === 'p') {
         e.preventDefault();
         document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });
     }
-    
+
     // Alt + C = Contact
     if (e.altKey && e.key === 'c') {
         e.preventDefault();
         document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Alt + T = Toggle theme
+    if (e.altKey && e.key === 't') {
+        e.preventDefault();
+        if (themeToggle) {
+            themeToggle.click();
+        }
     }
 });

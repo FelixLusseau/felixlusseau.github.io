@@ -1,46 +1,46 @@
 {
-  "name": "felix-lusseau-portfolio",
-  "version": "1.0.0",
-  "description": "Site vitrine personnel de Félix Lusseau - Ingénieur DevOps & Administrateur Système",
-  "main": "index.html",
-  "scripts": {
-    "start": "npx live-server --port=3000 --open=/",
-    "build": "echo 'No build step needed for static site'",
-    "deploy": "echo 'Deploy to GitHub Pages via repository settings'",
-    "serve": "npx http-server -p 3000 -o"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/FelixLusseau/portfolio.git"
-  },
-  "keywords": [
-    "portfolio",
-    "developer",
-    "devops",
-    "system-administrator",
-    "github-pages",
-    "responsive",
-    "html5",
-    "css3",
-    "javascript"
-  ],
-  "author": {
-    "name": "Félix Lusseau",
-    "email": "contact@felix-lusseau.dev",
-    "url": "https://github.com/FelixLusseau"
-  },
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/FelixLusseau/portfolio/issues"
-  },
-  "homepage": "https://felixlusseau.github.io/portfolio",
-  "devDependencies": {
-    "live-server": "^1.2.2",
-    "http-server": "^14.1.1"
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead"
-  ]
+    "name": "felix-lusseau-portfolio",
+    "version": "1.0.0",
+    "description": "Site vitrine personnel de Félix Lusseau - Ingénieur DevOps & Administrateur Système",
+    "main": "index.html",
+    "scripts": {
+        "start": "npx live-server --port=3000 --open=/",
+        "build": "echo 'No build step needed for static site'",
+        "deploy": "echo 'Deploy to GitHub Pages via repository settings'",
+        "serve": "npx http-server -p 3000 -o"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/FelixLusseau/portfolio.git"
+    },
+    "keywords": [
+        "portfolio",
+        "developer",
+        "devops",
+        "system-administrator",
+        "github-pages",
+        "responsive",
+        "html5",
+        "css3",
+        "javascript"
+    ],
+    "author": {
+        "name": "Félix Lusseau",
+        "email": "contact@felix-lusseau.dev",
+        "url": "https://github.com/FelixLusseau"
+    },
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/FelixLusseau/portfolio/issues"
+    },
+    "homepage": "https://felixlusseau.github.io/portfolio",
+    "devDependencies": {
+        "live-server": "^1.2.2",
+        "http-server": "^14.1.1"
+    },
+    "browserslist": [
+        "> 1%",
+        "last 2 versions",
+        "not dead"
+    ]
 }
