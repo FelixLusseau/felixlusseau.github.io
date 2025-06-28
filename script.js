@@ -101,12 +101,19 @@ window.addEventListener('load', () => {
     setTimeout(typeWriter, 1000);
 });
 
-// Parallax effect for hero section
+// Parallax effect for hero section (optimized)
 window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;
     const hero = document.querySelector('.hero');
-    if (hero) {
-        hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+    const heroHeight = hero.offsetHeight;
+    
+    // Only apply parallax when hero is visible
+    if (scrolled < heroHeight && hero) {
+        const parallaxSpeed = scrolled * 0.3;
+        hero.style.transform = `translateY(${parallaxSpeed}px)`;
+    } else if (hero) {
+        // Reset transform when hero is out of view
+        hero.style.transform = 'translateY(0px)';
     }
 });
 

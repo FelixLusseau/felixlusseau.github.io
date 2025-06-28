@@ -124,6 +124,8 @@ body {
     min-height: 100vh;
     display: flex;
     align-items: center;
+    position: relative;
+    z-index: 1;
 }
 
 .hero-container {
@@ -266,6 +268,8 @@ body {
 /* Sections */
 section {
     padding: 80px 0;
+    position: relative;
+    z-index: 2;
 }
 
 .section-title {
@@ -292,6 +296,8 @@ section {
 /* About Section */
 .about {
     background: var(--bg-secondary);
+    position: relative;
+    z-index: 2;
 }
 
 .about-intro {
@@ -347,6 +353,11 @@ section {
 }
 
 /* Skills Section */
+.skills {
+    position: relative;
+    z-index: 3;
+}
+
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -407,6 +418,8 @@ section {
 /* Projects Section */
 .projects {
     background: var(--bg-secondary);
+    position: relative;
+    z-index: 4;
 }
 
 .projects-grid {
@@ -535,6 +548,8 @@ section {
 /* Contact Section */
 .contact {
     background: var(--bg-primary);
+    position: relative;
+    z-index: 5;
 }
 
 .contact-content {
@@ -625,6 +640,8 @@ section {
     background: var(--text-primary);
     color: white;
     padding: 2rem 0;
+    position: relative;
+    z-index: 6;
 }
 
 .footer-content {
