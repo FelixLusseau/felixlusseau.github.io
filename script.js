@@ -175,7 +175,7 @@ window.addEventListener('scroll', () => {
 
     // Only apply parallax when hero is visible
     if (scrolled < heroHeight && hero) {
-        const parallaxSpeed = scrolled * 0.3;
+        const parallaxSpeed = scrolled * 0.25;
         hero.style.transform = `translateY(${parallaxSpeed}px)`;
     } else if (hero) {
         // Reset transform when hero is out of view
