@@ -2,6 +2,13 @@
 const hamburger = document.getElementById('hamburger');
 const navMenu = document.getElementById('nav-menu');
 
+// Global elements
+const body = document.body;
+const themeToggle = document.getElementById('theme-toggle');
+const themeIcon = document.getElementById('theme-icon');
+const navbar = document.querySelector('.navbar');
+const languageSelector = document.getElementById('language-selector');
+
 if (hamburger && navMenu) {
     hamburger.addEventListener('click', () => {
         hamburger.classList.toggle('active');
@@ -9,11 +16,108 @@ if (hamburger && navMenu) {
     });
 }
 
+// Translation system
+const translations = {
+    fr: {
+        'nav-home': 'Accueil',
+        'nav-about': 'À propos',
+        'nav-skills': 'Compétences',
+        'nav-projects': 'Projets',
+        'nav-contact': 'Contact',
+        'hero-greeting': 'Salut 👋, je suis <span class="highlight">Félix Lusseau</span>',
+        'hero-title': 'Ingénieur Ops & Administrateur Systèmes',
+        'hero-description': 'Ingénieur projets Ops à Citeos Solutions Digitales (Vinci Énergies), administrateur serveurs et ancien président de l\'association Informatique Télécom Strasbourg.',
+        'btn-projects': 'Voir mes projets',
+        'btn-contact': 'Me contacter',
+        'btn-view-code': 'Voir le code',
+        'btn-all-projects': 'Voir tous mes projets sur GitHub',
+        'section-about': 'À propos de moi',
+        'section-skills': 'Compétences techniques',
+        'section-projects': 'Projets récents',
+        'section-contact': 'Restons en contact',
+        'contact-description': 'Vous avez un projet intéressant ou souhaitez discuter de technologies DevOps, administration système ou IRVE ? N\'hésitez pas à me contacter !',
+        'contact-location': 'Localisation',
+        'contact-company': 'Entreprise',
+        'contact-association': 'Association',
+        'footer-text': '&copy; 2025 Félix Lusseau. Fait avec ❤️ et déployé sur GitHub Pages.',
+        'stat-contributions': 'Contributions',
+        'stat-repositories': 'Repositories',
+        'stat-followers': 'Followers'
+    },
+    en: {
+        'nav-home': 'Home',
+        'nav-about': 'About',
+        'nav-skills': 'Skills',
+        'nav-projects': 'Projects',
+        'nav-contact': 'Contact',
+        'hero-greeting': 'Hi 👋, I\'m <span class="highlight">Félix Lusseau</span>',
+        'hero-title': 'Ops Engineer & System Administrator',
+        'hero-description': 'Ops Project Engineer at Citeos Solutions Digitales (Vinci Énergies), server administrator and former president of the Informatique Télécom Strasbourg association.',
+        'btn-projects': 'View my projects',
+        'btn-contact': 'Contact me',
+        'btn-view-code': 'View code',
+        'btn-all-projects': 'View all my projects on GitHub',
+        'section-about': 'About me',
+        'section-skills': 'Technical skills',
+        'section-projects': 'Recent projects',
+        'section-contact': 'Let\'s stay in touch',
+        'contact-description': 'Do you have an interesting project or want to discuss DevOps technologies, system administration or IRVE? Feel free to contact me!',
+        'contact-location': 'Location',
+        'contact-company': 'Company',
+        'contact-association': 'Association',
+        'footer-text': '&copy; 2025 Félix Lusseau. Made with ❤️ and deployed on GitHub Pages.',
+        'stat-contributions': 'Contributions',
+        'stat-repositories': 'Repositories',
+        'stat-followers': 'Followers'
+    }
+};
+
+// Language functionality
+
+// Check for saved language preference or default to French
+const currentLanguage = localStorage.getItem('language') || 'fr';
+body.setAttribute('data-language', currentLanguage);
+if (languageSelector) {
+    languageSelector.value = currentLanguage;
+}
+
+// Function to translate page
+function translatePage(language) {
+    const elementsToTranslate = document.querySelectorAll('[data-translate]');
+
+    elementsToTranslate.forEach(element => {
+        const key = element.getAttribute('data-translate');
+        if (translations[language] && translations[language][key]) {
+            element.innerHTML = translations[language][key];
+        }
+    });
+
+    // Update document language
+    document.documentElement.lang = language;
+}
+
+// Language selector event listener
+if (languageSelector) {
+    languageSelector.addEventListener('change', (e) => {
+        const selectedLanguage = e.target.value;
+
+        body.setAttribute('data-language', selectedLanguage);
+        localStorage.setItem('language', selectedLanguage);
+        translatePage(selectedLanguage);
+
+        // Update typing animation if needed
+        if (selectedLanguage !== currentLanguage) {
+            setTimeout(() => {
+                startTypingAnimation();
+            }, 100);
+        }
+    });
+}
+
+// Initialize page translation
+translatePage(currentLanguage);
+
 // Theme toggle functionality
-const themeToggle = document.getElementById('theme-toggle');
-const themeIcon = document.getElementById('theme-icon');
-const body = document.body;
-const navbar = document.querySelector('.navbar');
 
 // Function to update navbar background
 function updateNavbarBackground() {
@@ -149,22 +253,28 @@ document.querySelectorAll('.skill-category, .project-card, .detail-item, .contac
 });
 
 // Typing animation for hero title
-const heroTitle = document.querySelector('.hero-title');
-const text = heroTitle.textContent;
-heroTitle.textContent = '';
+function startTypingAnimation() {
+    const heroTitle = document.querySelector('.hero-title');
+    if (!heroTitle) return;
 
-let i = 0;
-const typeWriter = () => {
-    if (i < text.length) {
-        heroTitle.textContent += text.charAt(i);
-        i++;
-        setTimeout(typeWriter, 50);
-    }
-};
+    const text = heroTitle.innerHTML; // Use innerHTML to preserve highlight span
+    heroTitle.innerHTML = '';
+
+    let i = 0;
+    const typeWriter = () => {
+        if (i < text.length) {
+            heroTitle.innerHTML = text.substring(0, i + 1);
+            i++;
+            setTimeout(typeWriter, 30);
+        }
+    };
+
+    typeWriter();
+}
 
 // Start typing animation when page loads
 window.addEventListener('load', () => {
-    setTimeout(typeWriter, 1000);
+    setTimeout(startTypingAnimation, 1000);
 });
 
 // Parallax effect for hero section (optimized)
@@ -323,9 +433,14 @@ console.log(`
    Voici quelques infos sur ce site :
    • Fait avec HTML5, CSS3 et JavaScript vanilla
    • Design responsive et moderne avec mode sombre
+   • Système de traduction FR/EN 🌍
    • Optimisé pour les performances
    • Déployable sur GitHub Pages
    • Mode sombre par défaut 🌙
+   
+   Raccourcis claviers :
+   • Alt + T : Basculer le thème
+   • Alt + L : Changer de langue
    
    GitHub: https://github.com/FelixLusseau
    LinkedIn: https://www.linkedin.com/in/felix-lusseau
@@ -370,6 +485,17 @@ document.addEventListener('keydown', (e) => {
         e.preventDefault();
         if (themeToggle) {
             themeToggle.click();
+        }
+    }
+
+    // Alt + L = Toggle language
+    if (e.altKey && e.key === 'l') {
+        e.preventDefault();
+        if (languageSelector) {
+            const currentLang = languageSelector.value;
+            const newLang = currentLang === 'fr' ? 'en' : 'fr';
+            languageSelector.value = newLang;
+            languageSelector.dispatchEvent(new Event('change'));
         }
     }
 });
