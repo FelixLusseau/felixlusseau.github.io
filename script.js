@@ -543,11 +543,11 @@ window.addEventListener('scroll', () => {
 
     // Only apply parallax when hero is visible
     if (scrolled < heroHeight && hero) {
-        // Detect mobile devices
-        const isMobile = window.innerWidth <= 768;
+        // Detect portrait orientation (vertical mode) which is more problematic for parallax
+        const isPortrait = window.innerHeight > window.innerWidth;
 
-        // Much more subtle parallax on mobile to avoid hiding stats
-        const parallaxSpeed = isMobile ? scrolled * 0.05 : scrolled * 0.25;
+        // Much more subtle parallax in portrait mode to avoid hiding stats
+        const parallaxSpeed = isPortrait ? scrolled * 0.05 : scrolled * 0.25;
 
         hero.style.transform = `translateY(${parallaxSpeed}px)`;
     } else if (hero) {
