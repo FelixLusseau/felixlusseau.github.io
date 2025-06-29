@@ -535,7 +535,7 @@ window.addEventListener('load', () => {
     setTimeout(updateGitHubStats, 2000); // Décaler un peu pour éviter la surcharge
 });
 
-// Parallax effect for hero section (optimized)
+// Parallax effect for hero section (optimized and mobile-friendly)
 window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;
     const hero = document.querySelector('.hero');
@@ -543,7 +543,12 @@ window.addEventListener('scroll', () => {
 
     // Only apply parallax when hero is visible
     if (scrolled < heroHeight && hero) {
-        const parallaxSpeed = scrolled * 0.25;
+        // Detect mobile devices
+        const isMobile = window.innerWidth <= 768;
+
+        // Much more subtle parallax on mobile to avoid hiding stats
+        const parallaxSpeed = isMobile ? scrolled * 0.05 : scrolled * 0.25;
+
         hero.style.transform = `translateY(${parallaxSpeed}px)`;
     } else if (hero) {
         // Reset transform when hero is out of view
