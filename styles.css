@@ -420,6 +420,9 @@ section {
     border-radius: 15px;
     box-shadow: var(--shadow-md);
     transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    /* Initial state before animation */
+    opacity: 0;
+    transform: translateY(30px);
 }
 
 .detail-item-header {
@@ -504,6 +507,9 @@ section {
     border-radius: 15px;
     box-shadow: var(--shadow-md);
     transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    /* Initial state before animation */
+    opacity: 0;
+    transform: translateY(30px);
 }
 
 [data-theme="dark"] .skill-category {
@@ -594,6 +600,9 @@ section {
     box-shadow: var(--shadow-md);
     transition: all 0.3s ease;
     border: 2px solid transparent;
+    /* Initial state before animation */
+    opacity: 0;
+    transform: translateY(30px);
 }
 
 [data-theme="dark"] .project-card {
@@ -794,6 +803,9 @@ section {
     border-radius: 15px;
     box-shadow: var(--shadow-md);
     transition: background-color 0.3s ease;
+    /* Initial state before animation */
+    opacity: 0;
+    transform: translateY(30px);
 }
 
 [data-theme="dark"] .contact-card {
@@ -1010,7 +1022,7 @@ section {
 }
 
 .fade-in-up {
-    animation: fadeInUp 0.6s ease-out;
+    animation: fadeInUp 0.6s ease-out forwards;
 }
 
 /* Smooth scrolling for older browsers */

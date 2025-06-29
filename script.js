@@ -1,3 +1,24 @@
+// CSS Cache Busting for Production
+(function () {
+    // Only apply cache busting in production (GitHub Pages)
+    const isProduction = window.location.hostname.includes('github.io') ||
+        window.location.hostname.includes('github.com') ||
+        window.location.protocol === 'https:';
+
+    if (isProduction) {
+        // Version number - increment this when CSS is updated
+        const CSS_VERSION = '1.0.0';
+
+        // Find the CSS link element
+        const cssLink = document.querySelector('link[href="styles.css"]');
+
+        if (cssLink) {
+            // Add version parameter to force cache refresh
+            cssLink.href = `styles.css?v=${CSS_VERSION}&t=${Date.now()}`;
+        }
+    }
+})();
+
 // Navigation hamburger menu
 const hamburger = document.getElementById('hamburger');
 const navMenu = document.getElementById('nav-menu');
@@ -293,13 +314,25 @@ const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('fade-in-up');
+            observer.unobserve(entry.target); // Stop observing once animated
         }
     });
 }, observerOptions);
 
-// Observe elements for animation
-document.querySelectorAll('.skill-category, .project-card, .detail-item, .contact-card').forEach(el => {
-    observer.observe(el);
+// Observe elements for animation, but first check if they're already visible
+const elementsToObserve = document.querySelectorAll('.skill-category, .project-card, .detail-item, .contact-card');
+elementsToObserve.forEach(el => {
+    // Check if element is already in viewport on page load
+    const rect = el.getBoundingClientRect();
+    const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+
+    if (isVisible) {
+        // Element is already visible, animate immediately
+        el.classList.add('fade-in-up');
+    } else {
+        // Element is not visible, observe it
+        observer.observe(el);
+    }
 });
 
 // Typing animation for hero title
