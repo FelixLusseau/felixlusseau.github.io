@@ -27,7 +27,7 @@
     --bg-primary: #0f172a;
     --bg-secondary: #1e293b;
     --bg-tertiary: #334155;
-    --border-color: #334155;
+    --border-color: #475569;
     --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
     --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.3);
     --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.3), 0 4px 6px -4px rgb(0 0 0 / 0.3);
@@ -747,7 +747,7 @@ section {
     display: grid;
     grid-template-columns: 1.2fr 1fr;
     gap: 4rem;
-    align-items: center;
+    align-items: start;
 }
 
 .contact-description {
@@ -791,7 +791,7 @@ section {
 
 .contact-card {
     background: white;
-    padding: 2rem;
+    padding: 3.5rem;
     border-radius: 15px;
     box-shadow: var(--shadow-md);
     transition: background-color 0.3s ease;
@@ -829,6 +829,16 @@ section {
 
 .contact-item p {
     color: var(--text-secondary);
+}
+
+.contact-item ul {
+    color: var(--text-secondary);
+    margin: 0;
+    padding-left: 1rem;
+}
+
+.contact-item li {
+    margin-bottom: 0.25rem;
 }
 
 /* Footer */
