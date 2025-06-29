@@ -42,7 +42,31 @@ const translations = {
         'footer-text': '&copy; 2025 Félix Lusseau. Fait avec ❤️ et déployé sur GitHub Pages.',
         'stat-contributions': 'Contributions',
         'stat-repositories': 'Repositories',
-        'stat-followers': 'Followers'
+        'stat-followers': 'Followers',
+        // About section content
+        'about-intro': 'Passionné par l\'infrastructure et les technologies DevOps, je travaille actuellement sur l\'IRVE (Infrastructure de Recharge pour Véhicules Électriques) à CSD et je garde un oeil sur l\'infrastructure serveurs d\'Informatique Télécom Strasbourg.',
+        'about-experience-title': 'Expériences professionnelles',
+        'about-experience-1': 'Stage Ingénieur Infrastructure à Arhs Developments (3 mois, été 2023)',
+        'about-experience-2': 'Stage Ingénieur Projet Ops à Citeos Solutions Digitales (6 mois, 2024)',
+        'about-experience-3': 'Co-administrateur des serveurs de l\'association Informatique Télécom Strasbourg',
+        'about-education-title': 'Formation',
+        'about-education-1': 'Diplôme d\'ingénieur en Informatique et Réseaux option Réseaux et Internet des Objets (RIO) à Télécom Physique Strasbourg',
+        'about-education-2': 'Master en informatique option Science et Ingénierie des Réseaux, de l\'Internet et des Systèmes (SIRIS) à l\'UFR de Mathématique et d\'Informatique de Strasbourg',
+        'about-projects-title': 'Projets actuels',
+        'about-projects-1': 'Développement d\'un bot Discord pour gérer les clans Clash Royale (One Punch Man Family - top 10 🇫🇷)',
+        'about-projects-2': 'Configuration NixOS personnelle',
+        // Skills categories
+        'skills-programming': 'Langages de programmation',
+        'skills-sysadmin': 'Administration système',
+        'skills-devops': 'DevOps & Monitoring',
+        'skills-frameworks': 'Frameworks & Outils',
+        // Project descriptions
+        'project-opm-description': 'Bot Discord pour gérer les clans et guerres de clans Clash Royale de la One Punch Man Family (top 10 🇫🇷).',
+        'project-nix-description': 'Ma configuration NixOS personnelle avec flakes pour une gestion déclarative et reproductible du système.',
+        'project-rapace-description': 'Projet du cours de Réseaux Programmables implémentant des concepts avancés de networking sur des équipement programmables dans le langage P4.',
+        'project-proxy-description': 'Proxy développé en Rust pour la conversion entre protocoles HTTP et CoAP.',
+        'project-pacman-description': 'Implémentation du jeu Pacman en C++ avec interface graphique et gestion des collisions.',
+        'project-ansible-description': 'Configuration Ansible pour déployer Traefik avec authentification LDAP automatisée.'
     },
     en: {
         'nav-home': 'Home',
@@ -68,7 +92,31 @@ const translations = {
         'footer-text': '&copy; 2025 Félix Lusseau. Made with ❤️ and deployed on GitHub Pages.',
         'stat-contributions': 'Contributions',
         'stat-repositories': 'Repositories',
-        'stat-followers': 'Followers'
+        'stat-followers': 'Followers',
+        // About section content
+        'about-intro': 'Passionate about infrastructure and DevOps technologies, I currently work on IRVE (Electric Vehicle Charging Infrastructure) at CSD and keep an eye on the server infrastructure of Informatique Télécom Strasbourg.',
+        'about-experience-title': 'Professional Experience',
+        'about-experience-1': 'Infrastructure Engineer Internship at Arhs Developments (3 months, summer 2023)',
+        'about-experience-2': 'Ops Project Engineer Internship at Citeos Solutions Digitales (6 months, 2024)',
+        'about-experience-3': 'Co-administrator of Informatique Télécom Strasbourg association servers',
+        'about-education-title': 'Education',
+        'about-education-1': 'Engineering degree in Computer Science and Networks with Networks and Internet of Things (RIO) option at Télécom Physique Strasbourg',
+        'about-education-2': 'Master\'s degree in computer science with Networks, Internet and Systems Science and Engineering (SIRIS) option at UFR of Mathematics and Computer Science of Strasbourg',
+        'about-projects-title': 'Current Projects',
+        'about-projects-1': 'Development of a Discord bot to manage Clash Royale clans (One Punch Man Family - top 10 🇫🇷)',
+        'about-projects-2': 'Personal NixOS configuration',
+        // Skills categories
+        'skills-programming': 'Programming Languages',
+        'skills-sysadmin': 'System Administration',
+        'skills-devops': 'DevOps & Monitoring',
+        'skills-frameworks': 'Frameworks & Tools',
+        // Project descriptions
+        'project-opm-description': 'Discord bot to manage Clash Royale clans and clan wars for the One Punch Man Family (top 10 🇫🇷).',
+        'project-nix-description': 'My personal NixOS configuration with flakes for declarative and reproducible system management.',
+        'project-rapace-description': 'Programmable Networks course project implementing advanced networking concepts on programmable equipment using P4 language.',
+        'project-proxy-description': 'Proxy developed in Rust for conversion between HTTP and CoAP protocols.',
+        'project-pacman-description': 'Pacman game implementation in C++ with graphical interface and collision management.',
+        'project-ansible-description': 'Ansible configuration to deploy Traefik with automated LDAP authentication.'
     }
 };
 
