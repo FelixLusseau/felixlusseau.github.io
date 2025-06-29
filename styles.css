@@ -546,6 +546,15 @@ section {
     font-weight: 500;
     transition: all 0.3s ease;
     border: 2px solid transparent;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.skill-tag i {
+    font-size: 1rem;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
 }
 
 [data-theme="dark"] .skill-tag {
@@ -558,6 +567,11 @@ section {
     background: var(--primary-color);
     color: white;
     transform: translateY(-2px);
+}
+
+.skill-tag:hover i {
+    opacity: 1;
+    transform: scale(1.1);
 }
 
 /* Projects Section */
